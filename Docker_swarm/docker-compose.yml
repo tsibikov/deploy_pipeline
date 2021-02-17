@@ -4,12 +4,12 @@ services:
         image: nortonts/linux_python:latest
         restart: always
         ports:
-            - "9000:9000" 
+            - "80:9000" 
     pgAdmin:
         restart: always
         image: dpage/pgadmin4
         ports:
-            - "80:80"
+            - "5432:80"
         environment:
             PGADMIN_DEFAULT_EMAIL: 1234@admin.com
             PGADMIN_DEFAULT_PASSWORD: 1234
@@ -20,7 +20,7 @@ services:
         image: postgres
         container_name: "postgres_container"
         ports:
-            - "5432:5432"
+            - "6543:5432"
         environment:
             POSTGRES_USER: me
             POSTGRES_PASSWORD: 1234
@@ -30,5 +30,3 @@ services:
 volumes:
     pgvol:
     pgadmin:
-        
-
