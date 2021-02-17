@@ -11,15 +11,29 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("docker-container stop & delete") {
+        stage("docker swarm leave") {
             steps {
                 
-                    sh 'docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+                    sh 'docker swarm leave -f'
                     
                 }
             }
+
+        stage("docker container prune") {
+            steps {
+                
+                    sh 'docker container prune'
+                    
+                }
+            }    
     
-    
+        stage("docker image prune") {
+            steps {
+                
+                    sh 'docker image prune -f -a'
+                    
+                }
+            }
     
     
     
