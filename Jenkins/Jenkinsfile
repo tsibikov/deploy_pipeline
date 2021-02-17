@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('ubuntu') {
-                	sh 'docker build -t nortonts/ubuntu_python:latest . '
+                	sh 'docker build -t ubuntu_python. '
                 }
             }
         }
