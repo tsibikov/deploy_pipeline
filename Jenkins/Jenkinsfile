@@ -20,23 +20,35 @@ pipeline {
                 }
             }
         } 
+        
         stage("create ubuntu docker image") {
             steps {
                 echo " ============== start building image =================="
-                dir ('ubuntu') {
-                	sh 'docker build -t nortonts/ubuntu_python:latest . '
+                	sh 'docker run -t nortonts/ubuntu_python:latest . '
+            }
+        }
+
+        stage("swarm") {
+            steps {
+                sh 'docker swarm init'
+                }
+            }  
+
+        stage("build docker-compose") {
+            steps {
+                dir ('Docker') {
+                    sh 'docker-compose build'
+                    }
                 }
             }
-        }
-        stage("docker push") {
+
+        stage("run node") {
             steps {
-                echo " ============== start pushing image =================="
-                sh '''
-                docker push nortonts/ubuntu_python:latest
-                '''
-            }
-        }
-    
+                dir ('Docker') {
+                sh 'docker stack deploy nodeapp -c docker-compose.yml'
+                    }
+                }     
+            }    
     
     
     
