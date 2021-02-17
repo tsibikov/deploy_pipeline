@@ -39,6 +39,17 @@ pipeline {
                 sh 'docker stack deploy nodeapp -c docker-compose.yml'
                     }
                 }     
-            }    
+            } 
+
+        stage("run node") {
+            steps {
+                dir ('Docker_swarm') {
+                sh 'docker-compose exec web bash'
+                    }
+                }     
+            } 
+
+
+               
     }
 }
