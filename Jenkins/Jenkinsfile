@@ -20,7 +20,22 @@ pipeline {
                 }
             }
         }     
-
+        stage("create docker image") {
+            steps {
+                echo " ============== start building image =================="
+                dir ('nginx') {
+                	sh 'docker build -t nortonts/linux_python:latest . '
+                }
+           }
+        }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                docker push nortonts/linux_python:latest
+                '''
+            }
+        }
         stage("swarm") {
             steps {
                 sh 'docker swarm init'
@@ -39,17 +54,6 @@ pipeline {
                 sh 'docker stack deploy nodeapp -c docker-compose.yml'
                     }
                 }     
-            } 
-
-        stage("run node") {
-            steps {
-                dir ('Docker_swarm') {
-                sh 'docker-compose exec web bash'
-                    }
-                }     
-            } 
-
-
-               
+            }    
     }
 }
