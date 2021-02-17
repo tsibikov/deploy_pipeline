@@ -27,14 +27,6 @@ pipeline {
                 }
             }  
 
-        stage("build docker-compose") {
-            steps {
-                dir ('Docker_swarm') {
-                    sh 'docker-compose build'
-                    }
-                }
-            }
-
         stage("run node") {
             steps {
                 dir ('Docker_swarm') {
