@@ -20,5 +20,29 @@ pipeline {
                 }
             }
         } 
+        stage("create ubuntu docker image") {
+            steps {
+                echo " ============== start building image =================="
+                dir ('ubuntu') {
+                	sh 'docker build -t nortonts/ubuntu_python:latest . '
+                }
+            }
+        }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                docker push nortonts/ubuntu_python:latest
+                '''
+            }
+        }
+    
+    
+    
+    
+    
+    
+    
+    
     }
 }              
