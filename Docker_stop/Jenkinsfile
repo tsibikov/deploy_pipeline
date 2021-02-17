@@ -25,7 +25,15 @@ pipeline {
                     sh 'docker container prune'
                     
                 }
-            }    
+            }
+
+        stage("docker volume prune") {
+            steps {
+                
+                    sh 'docker volume prune'
+                    
+                }
+            }         
     
         stage("docker image prune") {
             steps {
