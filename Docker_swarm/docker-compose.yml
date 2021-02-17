@@ -1,10 +1,10 @@
 version: '3'
 services:
     web:
-        image: debian:latest
+        image: nortonts/nginx_conf:latest
         restart: always
         ports:
-            - "80:9000" 
+            - "9000:9000" 
     pgAdmin:
         restart: always
         image: dpage/pgadmin4
@@ -30,3 +30,5 @@ services:
 volumes:
     pgvol:
     pgadmin:
+        
+
