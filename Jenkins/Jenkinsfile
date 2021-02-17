@@ -19,7 +19,7 @@ pipeline {
                     """
                 }
             }
-        }     
+        """}     
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
@@ -35,7 +35,7 @@ pipeline {
                 docker push nortonts/linux_python:latest
                 '''
             }
-        }
+        }"""
         stage("swarm") {
             steps {
                 sh 'docker swarm init'
