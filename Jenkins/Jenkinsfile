@@ -29,7 +29,7 @@ pipeline {
 
         stage("build docker-compose") {
             steps {
-                dir ('Docker') {
+                dir ('Docker_swarm') {
                     sh 'docker-compose build'
                     }
                 }
@@ -37,7 +37,7 @@ pipeline {
 
         stage("run node") {
             steps {
-                dir ('Docker') {
+                dir ('Docker_swarm') {
                 sh 'docker stack deploy nodeapp -c docker-compose.yml'
                     }
                 }     
