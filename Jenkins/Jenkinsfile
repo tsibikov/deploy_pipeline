@@ -20,13 +20,6 @@ pipeline {
                 }
             }
         } 
-        
-        stage("create ubuntu docker image") {
-            steps {
-                echo " ============== start building image =================="
-                	sh 'docker run -t nortonts/ubuntu_python:latest . '
-            }
-        }
 
         stage("swarm") {
             steps {
